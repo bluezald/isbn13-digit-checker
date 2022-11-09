@@ -1,0 +1,31 @@
+html,body{
+  font-family: 'Questrial', sans-serif;
+}
+
+#app {
+  font-family: 'Questrial', sans-serif;
+}
+
+input.barcode::-webkit-outer-spin-button,
+input.barcode::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.barcode::-webkit-outer-spin-button,
+input.barcode::-webkit-inner-spin-button {
+  -moz-appearance: textfield;
+}
+
+.button.is-link {
+  background-color: #db0000 !important;
+}
+
+button.is-link.is-light {
+  background-color: #eff1fa !important;
+  color: #db0000 !important;
+}
+
+button.is-link[disabled] {
+  border-color: #db0000 !important;
+}

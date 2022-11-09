@@ -17,13 +17,4 @@ body {
   height: 100vh;
   background: #f5f5f5;
 }
-
-.button.is-link {
-  background-color: #db0000 !important;
-}
-
-button.is-link.is-light {
-  background-color: #eff1fa !important;
-  color: #db0000 !important;
-}
 </style>

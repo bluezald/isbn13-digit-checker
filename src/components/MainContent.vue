@@ -6,6 +6,15 @@ const { getCompleteISBN13Code } = useISBN13CheckDigit();
 
 const barcode = ref("");
 const isbn13Code = ref("");
+const barcodeImageUrl = "https://images.pexels.com/photos/7363196/pexels-photo-7363196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+
+const isValidBarcode = computed(() => {
+  return !isNaN(barcode.value) && barcode.value.toString().length === 12;
+});
+
+const isEmpty = computed(() => {
+  return barcode.value.toString().length === 0;
+})
 
 const compute = () => {
   isbn13Code.value = getCompleteISBN13Code(barcode.value);
@@ -14,9 +23,6 @@ const clear = () => {
   barcode.value = "";
   isbn13Code.value = "";
 };
-const isValidBarcode = computed(() => {
-  return !isNaN(barcode.value) && barcode.value.toString().length === 12;
-});
 </script>
 
 <template>
@@ -27,7 +33,7 @@ const isValidBarcode = computed(() => {
           <div class="columns is-vcentered">
             <div class="column">
               <img
-                src="https://images.pexels.com/photos/7363196/pexels-photo-7363196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                :src="barcodeImageUrl"
                 alt=""
               />
             </div>
@@ -37,9 +43,10 @@ const isValidBarcode = computed(() => {
                   <label class="label">Enter barcode: </label>
                   <div class="control">
                     <input
-                      class="input"
-                      type="text"
-                      placeholder="XXXXXXXXXXXXX"
+                      id="barcode-input"
+                      class="input barcode"
+                      type="number"
+                      placeholder="Input barcode here..."
                       v-model="barcode"
                     />
                   </div>
@@ -60,17 +67,16 @@ const isValidBarcode = computed(() => {
                     <input
                       disabled
                       class="input"
-                      type="text"
                       v-model="isbn13Code"
                     />
                   </div>
                 </div>
                 <div class="field is-grouped">
-                  <div class="control" @click="compute">
-                    <button class="button is-link">Compute</button>
+                  <div id="barcode-submit" class="control" @click="compute">
+                    <button class="button is-link" :disabled="!isValidBarcode">Compute</button>
                   </div>
-                  <div class="control" @click="clear">
-                    <button class="button is-link is-light">Clear</button>
+                  <div id="barcode-clear" class="control" @click="clear">
+                    <button class="button is-link is-light" :disabled="isEmpty">Clear</button>
                   </div>
                 </div>
               </div>
